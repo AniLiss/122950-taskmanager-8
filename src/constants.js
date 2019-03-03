@@ -1,7 +1,15 @@
 export const cardsContainer = document.querySelector(`.board__tasks`);
 export const filterContainer = document.querySelector(`.main__filter`);
 export const filterLabelsArray = filterContainer.querySelectorAll(`.filter__label`);
-export const card = `<article class="card card--edit card--black">
+
+export const appendDOMElement = (arrayOfItems, container) => {
+  return arrayOfItems.map((item) => {
+    container.innerHTML += item;
+    return container;
+  });
+};
+
+export const makeCard = (task) => `<article class="card card--edit card--black">
             <form class="card__form" method="get">
               <div class="card__inner">
                 <div class="card__control">
@@ -31,8 +39,7 @@ export const card = `<article class="card card--edit card--black">
                       class="card__text"
                       placeholder="Start typing your text here..."
                       name="text"
-                    >
-This is example of new task, you can add picture, set date and time, add tags.</textarea
+                    >${task.title}</textarea
                     >
                   </label>
                 </div>
@@ -41,7 +48,7 @@ This is example of new task, you can add picture, set date and time, add tags.</
                   <div class="card__details">
                     <div class="card__dates">
                       <button class="card__date-deadline-toggle" type="button">
-                        date: <span class="card__date-status">no</span>
+                        date: <span class="card__date-status">${task.dueDate}</span>
                       </button>
 
                       <fieldset class="card__date-deadline" disabled>
@@ -147,8 +154,7 @@ This is example of new task, you can add picture, set date and time, add tags.</
                     </div>
 
                     <div class="card__hashtag">
-                      <div class="card__hashtag-list"></div>
-
+                      <ul class="card__hashtag-list">${task.tags}</ul>
                       <label>
                         <input
                           type="text"
@@ -167,14 +173,14 @@ This is example of new task, you can add picture, set date and time, add tags.</
                       name="img"
                     />
                     <img
-                      src="img/add-photo.svg"
+                      src=${task.picture}
                       alt="task picture"
                       class="card__img"
                     />
                   </label>
 
                   <div class="card__colors-inner">
-                    <h3 class="card__colors-title">Color</h3>
+                    <h3 class="card__colors-title">Color: <span>${task.color}</span></h3>
                     <div class="card__colors-wrap">
                       <input
                         type="radio"
@@ -248,9 +254,13 @@ This is example of new task, you can add picture, set date and time, add tags.</
               </div>
             </form>
           </article>`;
-export const createCards = (amountOfCards, cardNode, container) => {
+
+import {getTask} from './data';
+
+export const createCards = (amountOfCards, container) => {
   return Array(amountOfCards).fill().map(() => {
-    container.innerHTML += cardNode;
-    return cardNode;
+    container.innerHTML += makeCard(getTask());
+    // container.insertAdjacentHTML(`beforeend`, makeCard(getTask()));
+    return container;
   });
 };
