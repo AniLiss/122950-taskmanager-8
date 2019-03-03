@@ -1,4 +1,4 @@
-import {filterContainer, cardsContainer, card, createCards} from './constants';
+import {filterContainer, cardsContainer, appendDOMElement, createCards} from './constants';
 
 const createFilter = (id, label, count, isDisabled = false, isChecked = false) => {
   return `<input
@@ -22,14 +22,7 @@ const archiveFilter = createFilter(`filter__archive`, `ARCHIVE`, `115`);
 
 const filters = [allFilter, overdueFilter, todayFilter, favoritesFilter, repeatingFilter, tagsFilter, archiveFilter];
 
-const appendFilters = (filtersArray) => {
-  return filtersArray.map((filter) => {
-    filterContainer.innerHTML += filter;
-    return filterContainer;
-  });
-};
-
-appendFilters(filters);
+appendDOMElement(filters, filterContainer);
 
 const getRandomNumber = (min, max) => {
   let rand = min + Math.random() * (max + 1 - min);
@@ -39,7 +32,7 @@ const getRandomNumber = (min, max) => {
 
 const switchFilters = () => {
   cardsContainer.innerHTML = ``;
-  createCards(getRandomNumber(3, 10), card, cardsContainer);
+  createCards(getRandomNumber(3, 10), cardsContainer);
 };
 
 filterContainer.addEventListener(`click`, (e) => {
