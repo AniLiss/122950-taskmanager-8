@@ -8,7 +8,7 @@ const colors = [`black`, `yellow`, `blue`, `green`, `pink`];
 const getOneItemFromArray = (items) => items[Math.floor(Math.random() * items.length)];
 const hashTagsMarkdown = (items) => [...items].map((item) => `<li>${item}</li>`).join(`, `);
 
-export const getTask = () => ({
+export const task = {
   title: [
     `learn theory`,
     `do hw`,
@@ -30,5 +30,4 @@ export const getTask = () => ({
   },
   isFavorite: false,
   isDone: false,
-});
-
+};
