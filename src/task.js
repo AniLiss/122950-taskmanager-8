@@ -1,17 +1,14 @@
-import {createElement} from './constants';
+import {Component} from './component';
 
-export class Task {
+export class Task extends Component {
   constructor({title, tags, picture, dueDate, repeatingDays, color}) {
+    super();
     this._title = title;
     this._tags = tags;
     this._picture = picture;
     this._dueDate = dueDate;
     this._repeatingDays = repeatingDays;
     this._color = color;
-
-    this._element = null;
-
-    this._state = {};
     this._onEdit = null;
   }
 
@@ -21,10 +18,6 @@ export class Task {
 
   _onEditButtonClick() {
     return typeof this._onEdit === `function` && this._onEdit();
-  }
-
-  get element() {
-    return this._element;
   }
 
   set onEdit(fn) {
@@ -279,23 +272,12 @@ export class Task {
           </article>`.trim();
   }
 
-  bind() {
+  createListeners() {
     this._element.querySelector(`.card__btn--edit`)
       .addEventListener(`click`, this._onEditButtonClick.bind(this));
   }
 
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
-  }
-
-  unbind() {
+  removeListeners() {
     this._element.querySelector(`.card__btn--edit`)
       .removeEventListener(`click`, this._onEditButtonClick.bind(this));
   }

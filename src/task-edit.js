@@ -1,13 +1,12 @@
-import {createElement} from './constants';
+import {Component} from './component';
 
-export class TaskEdit {
+export class TaskEdit extends Component {
   constructor(data) {
+    super();
     this._title = data.title;
     this._dueDate = data.dueDate;
     this._tags = data.tags;
     this._repeatingDays = data.repeatingDays;
-
-    this._element = null;
     this._onSubmit = null;
   }
 
@@ -22,10 +21,6 @@ export class TaskEdit {
 
   set onSubmit(fn) {
     this._onSubmit = fn;
-  }
-
-  get element() {
-    return this._element;
   }
 
   get template() {
@@ -145,23 +140,12 @@ export class TaskEdit {
     </article>`.trim();
   }
 
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unbind() {
+  removeListeners() {
     this._element.querySelector(`.card__save`)
       .removeEventListener(`submit`, this._onSubmitButtonClick.bind(this));
   }
 
-  unrender() {
-    this.unbind();
-    this._element = null;
-  }
-
-  bind() {
+  createListeners() {
     this._element.querySelector(`.card__save`)
       .addEventListener(`submit`, this._onSubmitButtonClick.bind(this));
   }
