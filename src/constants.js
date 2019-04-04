@@ -14,9 +14,24 @@ export const createElement = (template) => {
   return newElement.firstChild;
 };
 
+export const colorMap = {
+  blue: `card--blue`,
+  black: `card--black`,
+  yellow: `card--yellow`,
+  green: `card--green`,
+  pink: `card--pink`,
+};
+
 // export const createCards = (amountOfCards, container) => {
 //   return Array(amountOfCards).fill().map(() => {
 //     container.innerHTML += makeCard(getTask());
+//     return container;
+//   });
+// };
+
+// export const createCards = (amountOfCards, cardNode, container) => {
+//   return Array(amountOfCards).fill().map(() => {
+//     container.innerHTML += cardNode;
 //     return container;
 //   });
 // };

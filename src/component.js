@@ -5,16 +5,17 @@ export class Component {
     if (new.target === Component) {
       throw new Error(`Can't instantiate Component, only concrete one.`);
     }
+
     this._element = null;
     this._state = {};
   }
 
-  get element() {
-    return this._element;
-  }
-
   get template() {
     throw new Error(`You have to define template.`);
+  }
+
+  get element() {
+    return this._element;
   }
 
   render() {
@@ -23,13 +24,15 @@ export class Component {
     return this._element;
   }
 
-  createListeners() {}
-
-  removeListeners() {}
-
   unrender() {
     this.removeListeners();
     this._element.remove();
     this._element = null;
   }
+
+  createListeners() {}
+
+  removeListeners() {}
+
+  update() {}
 }
