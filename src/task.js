@@ -49,7 +49,7 @@ export class Task extends Component {
                  <svg class="card__color-bar-wave" width="100%" height="10">
                  <use xlink:href="#wave"></use>
                  </svg>
-        </div>
+                 </div>
                 </div>
 
                 <div class="card__textarea-wrap">
