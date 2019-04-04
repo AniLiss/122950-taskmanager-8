@@ -30,14 +30,14 @@ const getRandomNumber = (min, max) => {
   return rand;
 };
 
-const switchFilters = () => {
-  cardsContainer.innerHTML = ``;
-  createCards(getRandomNumber(3, 10), cardsContainer);
-};
-
-filterContainer.addEventListener(`click`, (e) => {
-  const filterLabel = e.target;
-  if (filterLabel.classList.contains(`filter__label`)) {
-    switchFilters();
-  }
-});
+// const switchFilters = () => {
+//   cardsContainer.innerHTML = ``;
+//   createCards(getRandomNumber(3, 10), cardsContainer);
+// };
+//
+// filterContainer.addEventListener(`click`, (e) => {
+//   const filterLabel = e.target;
+//   if (filterLabel.classList.contains(`filter__label`)) {
+//     switchFilters();
+//   }
+// });
